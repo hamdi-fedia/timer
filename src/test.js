@@ -28,14 +28,18 @@ valueInput = (event) => {
  start = () => {
     this.interval = setInterval(() => {
         let s = this.state.secondes;
-         this.setState({
-             //secondes : Number(this.state.secondes)+1,
-            
-             if (s === 60){
-                 minutes++ ,
-                 secondes = 0 ,
+        if (s === 60){
+            this.state.minutes++ 
+            this.state.secondes = 0 
 
-             }
+        }
+        if (this.state.minutes === 60){
+            this.state.heures++
+            this.state.minutes = 0 
+        }
+
+         this.setState({
+             secondes : Number(this.state.secondes)+1,   
          })
      },1000);
  }
@@ -57,7 +61,7 @@ valueInput = (event) => {
            <h1>Timer</h1>
            <hr></hr>
            <input placeholder="Enter the number..." onChange={this.valueInput}></input>
-            <button onClick={this.convertValue}>Convertir</button>
+            <button onClick={this.convertValue}>Convert</button>
            <hr></hr>
            <h1>{this.state.heures} H : {this.state.minutes} M : {this.state.secondes} S </h1>
            <hr></hr>
